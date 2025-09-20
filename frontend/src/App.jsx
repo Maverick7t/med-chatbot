@@ -1,4 +1,5 @@
 import { useState } from "react";
+import anime from './assets/anime1.jpg';
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Check } from "lucide-react";
 
@@ -69,7 +70,7 @@ export default function App() {
             {/* Anime Character Background */}
             <div className="relative h-110 bg-gradient-to-b from-transparent via-purple-900/30 to-black">
               <img
-                src="/anime.jpg"
+                src="/anime1.jpg"
                 alt="Anime Character"
                 className="w-full h-full object-cover"
               />
