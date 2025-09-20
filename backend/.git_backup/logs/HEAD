@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 0646d525fd6bef17efe8d9c415dc59cec4adaa1d Moinaktar Shaikh <moina@codebuster.(none)> 1758107247 +0530	clone: from https://github.com/Maverick7t/med-chatbot.git
+0646d525fd6bef17efe8d9c415dc59cec4adaa1d 691949c73bc82758bdad60301cbd76d059614da0 folder structure added <moinaktarshaikh651@gmail.com> 1758111857 +0530	commit: Folder structure added
+691949c73bc82758bdad60301cbd76d059614da0 b1b9ab535e65862a94f881f01e193aec86a6778b folder structure added <moinaktarshaikh651@gmail.com> 1758359087 +0530	commit: Add React frontend (vite-project) and update backend components
+b1b9ab535e65862a94f881f01e193aec86a6778b a5fd3f2c8e4088ea81aac5f6264f503d8be19457 folder structure added <moinaktarshaikh651@gmail.com> 1758359438 +0530	commit: Setup GitHub Pages deployment with GitHub Actions workflow
+a5fd3f2c8e4088ea81aac5f6264f503d8be19457 89985d79466e3da956f303d70d935ed2090abee4 folder structure added <moinaktarshaikh651@gmail.com> 1758359590 +0530	commit: Fix GitHub Pages deployment permissions and use actions/deploy-pages@v4
+89985d79466e3da956f303d70d935ed2090abee4 c581a45bfdd53b551788a7227385668fd4e03302 folder structure added <moinaktarshaikh651@gmail.com> 1758359954 +0530	commit: Test deployment trigger
+c581a45bfdd53b551788a7227385668fd4e03302 a2f2a28d3ad1111c5efe92ad7884a3cd7169764a folder structure added <moinaktarshaikh651@gmail.com> 1758360109 +0530	commit: Add github-pages environment to deployment job
+a2f2a28d3ad1111c5efe92ad7884a3cd7169764a 37921971c005ee7ca93d46e5f28c4e75f6a579c5 folder structure added <moinaktarshaikh651@gmail.com> 1758360509 +0530	commit: Trigger fresh deployment after removing conflicting dist folder
