@@ -3,11 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/frontend/',
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react(), tailwindcss()],
+  base: '/med-chatbot/',   // ✅ must match GitHub repo name
   build: {
     outDir: 'dist',
   }
