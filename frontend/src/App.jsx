@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Check } from "lucide-react";
-
 export default function App() {
   const [showChat, setShowChat] = useState(false);
   // Add this line with other useState hooks
@@ -64,28 +63,20 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ y: -50, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="relative w-full max-w-sm mx-auto bg-gradient-to-b from-purple-900/20 via-blue-900/20 to-black border border-gray-800 rounded-3xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-sm mx-auto bg-gradient-to-b from-purple-100/20 via-blue-100/20 to-black border border-gray-800 rounded-3xl overflow-hidden shadow-2xl"
           >
             {/* Anime Character Background */}
-            <div className="relative h-110 bg-gradient-to-b from-transparent via-purple-900/30 to-black">
+            <div className="relative h-130 bg-gradient-to-b from-transparent via-purple-900/30 to-black">
               <img
-                src={anime}
+                src="./anime1.jpg"
                 alt="Anime Character"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black"></div>
-
-              {/* Stars/Sparkles */}
-              <div className="absolute inset-0">
-                <div className="absolute top-20 left-12 w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
-                <div className="absolute top-32 right-16 w-1 h-1 bg-purple-400 rounded-full animate-pulse"></div>
-                <div className="absolute top-48 left-20 w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                <div className="absolute top-56 right-8 w-1 h-1 bg-blue-300 rounded-full animate-pulse"></div>
-              </div>
             </div>
 
             {/* Content */}
-            <div className="px-6 pb-8 -mt-20 relative z-10">
+            <div className="px-6 pb-8 -mt-40 relative z-10">
               <h1 className="text-white text-2xl font-bold mb-6">
                 MediSora
               </h1>
@@ -198,6 +189,6 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div> // closes main div
+    </div > // closes main div
   );
 } // closes App
