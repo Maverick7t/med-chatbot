@@ -76,20 +76,20 @@ export default function App() {
             </div>
 
             {/* Content */}
-            <div className="px-6 pb-8 -mt-40 relative z-10">
-              <h1 className="text-white text-2xl font-bold mb-6">
+            <div className="px-6 pb-8 -mt-30 relative z-10">
+              <h1 className="text-white text-2xl font-bold mb-4">
                 MediSora
               </h1>
 
               {/* Features */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-8">
                 {[
                   "Diseases & Disorders",
                   "Medical Tests & Procedures",
                   "Treatments & Therapies",
                   "Gale Encyclopedia of Medicine corpus",
                 ].map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
+                  <div key={index} className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <Check className="w-4 h-4 text-white" />
                     </div>
