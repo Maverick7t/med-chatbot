@@ -51,12 +51,12 @@ export default function App() {
     setIsTyping(true);
 
     try {
-      const formData = new FormData();
-      formData.append('msg', userMessage);
-
       const response = await fetch(`${API_URL}/get`, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ msg: userMessage }),
       });
 
       if (!response.ok) {
