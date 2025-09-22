@@ -26,7 +26,7 @@ export default function App() {
 
   const checkBackendHealth = async () => {
     try {
-      const response = await fetch('${API_URL}/health');
+      const response = await fetch(`${API_URL}/health`);
       if (response.ok) {
         setConnectionStatus('connected');
         console.log('✅ Backend connection healthy');
