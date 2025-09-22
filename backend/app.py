@@ -26,14 +26,14 @@ PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY") or ""
 NVIDIA_API_KEY = os.environ.get("NVIDIA_API_KEY") or ""
 
 if not PINECONE_API_KEY or not NVIDIA_API_KEY:
-    logger.error("Missing required API keys!")
-    exit(1)
+    logger.error("Missing required API keys")
+    raise ValueError("API keys not configured")
 
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["NVIDIA_API_KEY"] = NVIDIA_API_KEY
 
 # --- Flask app with enhanced CORS ---
-app = Flask(__name__, static_folder="dist", static_url_path="")
+app = Flask(__name__)  # Remove static folder - we're not serving frontend files
 CORS(app, origins=[
     "https://maverick7t.github.io",
     "http://localhost:5173",  # Vite dev server
@@ -157,12 +157,25 @@ def health_check():
 def chat():
     """Enhanced chat endpoint with better error handling"""
     try:
+        logger.info(f"Request Content-Type: {request.content_type}")
+        logger.info(f"Request is_json: {request.is_json}")
+        
         # Get message from request
+        msg = None
         if request.is_json:
-            data = request.get_json()
-            msg = data.get("msg", "").strip()
+            try:
+                data = request.get_json()
+                if data is None:
+                    logger.error("get_json() returned None")
+                    return jsonify({"error": "Invalid JSON"}), 400
+                msg = data.get("msg", "").strip()
+                logger.info(f"Parsed JSON msg: {msg[:50]}...")
+            except Exception as json_error:
+                logger.error(f"JSON parsing error: {str(json_error)}")
+                return jsonify({"error": "Invalid JSON format"}), 400
         else:
             msg = request.form.get("msg", "").strip()
+            logger.info(f"Parsed form msg: {msg[:50]}...")
         
         if not msg:
             return jsonify({"error": "Empty message"}), 400
@@ -176,23 +189,15 @@ def chat():
         logger.info(f"✅ Generated response: {answer[:100]}...")
         
         # Return JSON response for better frontend handling
-        if request.is_json:
-            return jsonify({
-                "response": answer,
-                "sources": len(response.get("context", []))
-            })
-        else:
-            # Maintain compatibility with existing frontend
-            return str(answer)
+        return jsonify({
+            "response": answer,
+            "sources": len(response.get("context", []))
+        })
             
     except Exception as e:
         logger.error(f"❌ Chat endpoint error: {str(e)}")
         error_msg = "I apologize, but I'm experiencing technical difficulties. Please try again later."
-        
-        if request.is_json:
-            return jsonify({"error": error_msg}), 500
-        else:
-            return error_msg, 500
+        return jsonify({"error": error_msg}), 500
 
 @app.route("/models", methods=["GET"])
 def available_models():
@@ -208,7 +213,7 @@ def available_models():
 def not_found(error):
     """Custom 404 handler"""
     logger.warning(f"404 error: {request.url}")
-    return send_from_directory(app.static_folder, "index.html")
+    return jsonify({"error": "Endpoint not found"}), 404
 
 @app.errorhandler(500)
 def internal_error(error):
