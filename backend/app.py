@@ -115,13 +115,9 @@ except Exception as e:
 # --- Enhanced Flask routes ---
 
 @app.route("/")
-def serve_react():
-    """Serve React frontend"""
-    try:
-        return send_from_directory(app.static_folder, "index.html")
-    except Exception as e:
-        logger.error(f"❌ Error serving frontend: {str(e)}")
-        return "Frontend not available", 500
+def root():
+    return jsonify({"status": "Backend running"})
+
 
 @app.route("/health", methods=["GET"])
 def health_check():
