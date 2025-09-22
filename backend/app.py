@@ -34,7 +34,11 @@ os.environ["NVIDIA_API_KEY"] = NVIDIA_API_KEY
 
 # --- Flask app with enhanced CORS ---
 app = Flask(__name__, static_folder="dist", static_url_path="")
-CORS(app, origins=["https://maverick7t.github.io", "http://localhost:3000"], supports_credentials=True)
+CORS(app, origins=[
+    "https://maverick7t.github.io",
+    "http://localhost:5173",  # Vite dev server
+    "http://localhost:3000"   # Backup for other dev servers
+], supports_credentials=True)
 
 # --- Initialize components with error handling ---
 try:
