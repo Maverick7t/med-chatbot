@@ -184,7 +184,12 @@ def chat():
         
         # Generate response using RAG chain
         response = rag_chain.invoke({"input": msg})
-        answer = response["answer"]
+        
+        # Add logging to see what we get back
+        logger.info(f"RAG response type: {type(response)}")
+        logger.info(f"RAG response keys: {response.keys() if isinstance(response, dict) else 'Not a dict'}")
+        
+        answer = response.get("answer", "") if isinstance(response, dict) else str(response)
         
         logger.info(f"✅ Generated response: {answer[:100]}...")
         
