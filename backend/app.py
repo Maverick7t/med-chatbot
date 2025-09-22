@@ -33,11 +33,11 @@ os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["NVIDIA_API_KEY"] = NVIDIA_API_KEY
 
 # --- Flask app with enhanced CORS ---
-app = Flask(__name__)  # Remove static folder - we're not serving frontend files
+app = Flask(__name__)  # API-only backend
 CORS(app, origins=[
-    "https://maverick7t.github.io",
-    "http://localhost:5173",  # Vite dev server
-    "http://localhost:3000"   # Backup for other dev servers
+    "https://maverick7t.github.io",  # Production frontend
+    "http://localhost:5173",         # Vite dev server
+    "http://localhost:3000"          # Backup dev server
 ], supports_credentials=True)
 
 # --- Initialize components with error handling ---
