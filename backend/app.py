@@ -86,6 +86,7 @@ class NvidiaLLM(LLM):
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
             )
+            logger.info(f"NVIDIA raw response: {completion}")
             response = completion.choices[0].message.content
             logger.info(f"✅ Generated response of {len(response)} characters")
             return response
