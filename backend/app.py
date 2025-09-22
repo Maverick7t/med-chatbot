@@ -83,13 +83,22 @@ class NvidiaLLM(LLM):
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
             )
-            logger.info(f"NVIDIA raw response: {completion}")
+            
+            # Fixed: Use attribute access instead of dictionary access
             response = completion.choices[0].message.content
-            logger.info(f"✅ Generated response of {len(response)} characters")
+            
+            if not response:
+                logger.warning("Empty response from NVIDIA API")
+                return "I apologize, but I didn't receive a proper response. Please try again."
+            
+            logger.info(f"Generated response of {len(response)} characters")
             return response
             
+        except AttributeError as e:
+            logger.error(f"Response structure error: {str(e)}")
+            return "I'm having trouble processing the response. Please try again."
         except Exception as e:
-            logger.error(f"❌ NVIDIA API error: {str(e)}")
+            logger.error(f"NVIDIA API error: {str(e)}")
             return "I apologize, but I'm experiencing technical difficulties. Please try again later."
 
     def _generate(self, prompts: List[str], stop: Optional[List[str]] = None, **kwargs: Any):
