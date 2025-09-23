@@ -95,7 +95,7 @@ chatapp/
 - **Azure** - Backend API hosting
 - **Auto-deployment** - Push code → Live instantly
 
-
+## Render is free and easy to use but gets throttled with free tier you can go for premium but if you're student and have Azure student offer you can use it.
 ## Azure Deployment (Backend)
 
 1. **Create Web App**  
