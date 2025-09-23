@@ -92,7 +92,7 @@ chatapp/
 **☁️ Production Deployment**
 - **GitHub Pages** - Frontend hosting
 - **Render.com** - Backend API hosting
-- - **Azure** - Backend API hosting
+- **Azure** - Backend API hosting
 - **Auto-deployment** - Push code → Live instantly
 
 ---
