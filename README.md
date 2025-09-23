@@ -95,6 +95,58 @@ chatapp/
 - **Azure** - Backend API hosting
 - **Auto-deployment** - Push code → Live instantly
 
+
+## Azure Deployment (Backend)
+
+1. **Create Web App**  
+   - Go to [portal.azure.com](https://portal.azure.com) → App Services → Create → Web App  
+   - Subscription: Student subscription  
+   - Resource Group: e.g., `medbot-rg`  
+   - Name: e.g., `med-chatbot-12345` (must be unique)  
+   - Publish: Code  
+   - Runtime: Python 3.11  
+   - Region: Match Pinecone region (e.g., East US)  
+   - Pricing: B1 (covered by credits)  
+   - Click **Review + Create → Create**
+
+2. **Configure Startup Command**  
+   - Go to App Service → Configuration → General Settings → Startup Command:  
+     ```
+     gunicorn --bind=0.0.0.0:$PORT app:app
+     ```  
+   - Save
+
+3. **Set Environment Variables**  
+   - Go to Configuration → Application Settings → add:  
+     ```
+     PINECONE_API_KEY=<your key>
+     NVIDIA_API_KEY=<your key>
+     HF_API_TOKEN=<your key>
+     USE_HF_API=true
+     FLASK_ENV=production
+     ```  
+   - Save → app restarts
+
+4. **Deploy Code from GitHub**  
+   - App Service → Deployment Center → GitHub → sign in  
+   - Select repo & branch → Python App Service build (Oryx)  
+   - Auto-deploys on push to main
+
+5. **Verify**  
+   - Check Logs → Log Stream  
+   - Health check: `https://YOUR_APP_NAME.azurewebsites.net/health`  
+   - Test chat:  
+     ```bash
+     curl -X POST https://YOUR_APP_NAME.azurewebsites.net/get \
+          -H "Content-Type: application/json" \
+          -d '{"msg":"what is acne?"}'
+     ```
+
+## Frontend
+
+- Update `.env`:
+
+
 ---
 
 ### **🚀 Production-Ready**
