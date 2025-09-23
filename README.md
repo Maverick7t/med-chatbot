@@ -36,8 +36,6 @@ chatapp/
 
 > **An intelligent medical assistant that understands your health questions and provides evidence-based answers using cutting-edge AI technology.**
 
-![Live Demo]([https://img.shields.io/badge/🚀_Live_Demo-Visit_Now-success?style=for-the-badge](https://maverick7t.github.io/med-chatbot/))
-
 ## 🎯 **What Problem Does This Solve?**
 
 **Problem:** People need quick, reliable medical information but struggle with:
